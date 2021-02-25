@@ -40,12 +40,14 @@ public class ProductoController {
 		//producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
 		producto.setPort(port);
 		
+		/*
 		try {
 		Thread.sleep(2000L);
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
-		//hola
+		*/
+
 		return producto;
 	}
 
