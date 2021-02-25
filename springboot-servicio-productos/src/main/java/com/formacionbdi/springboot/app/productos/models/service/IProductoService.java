@@ -2,7 +2,8 @@ package com.formacionbdi.springboot.app.productos.models.service;
 
 import java.util.List;
 
-import com.formacionbdi.springboot.app.productos.models.entity.Producto;
+import com.commons.models.entity.Producto;
+
 
 public interface IProductoService {
 
