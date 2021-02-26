@@ -1,0 +1,3 @@
+Hola Juan del futuro. Tenes que traer el cmd al directorio, ahi tirar mvnw.cmd install.
+Despues no te olvides de agregar la dependencia en cada proyecto que utilize el jar
+La dependencia la sacas del POM del common, copiando groupId artifactID y version
