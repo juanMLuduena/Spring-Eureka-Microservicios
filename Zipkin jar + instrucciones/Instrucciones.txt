@@ -1,0 +1,3 @@
+java -jar zipkin-server-2.23.2-exec.jar --server.port=9512
+
+La anotacion server.port es para elegir un puerto, el dafault es=9411
