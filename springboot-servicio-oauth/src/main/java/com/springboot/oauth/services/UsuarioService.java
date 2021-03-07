@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.commons.models.entity.Usuario;
 import com.springboot.oauth.client.UsuarioFeignClient;
 
+import brave.Tracer;
 import feign.FeignException;
 
 @Service
@@ -25,6 +26,9 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 
 	@Autowired
 	private UsuarioFeignClient client;
+	
+	@Autowired //imp de brave, para agregar log a los trace de zipkin
+	private Tracer tracer;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,7 +42,9 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
 			return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true,
 					authorities);
 		} catch (FeignException e) {
-			log.error("Error en el login, no existe el usuario " + username);
+			String error = "Error en el login, no existe el usuario " + username + " en el sistema.";
+			log.error(error);
+			tracer.currentSpan().tag("error.mensaje", error);
 			throw new UsernameNotFoundException("Error en el login, no existe el usuario " + username);
 
 		}
